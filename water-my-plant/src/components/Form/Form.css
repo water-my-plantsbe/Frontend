@@ -1,0 +1,15 @@
+
+div ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+li {
+  list-style-type: none;
+  border: 1px solid green;
+  width: 40%;
+  height: 25px;
+  margin: auto;
+  margin-right: 40px;
+}
