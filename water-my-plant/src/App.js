@@ -44,8 +44,8 @@ class App extends Component {
         <NavDiv >
             <nav className="navBar" >
              <div>
-                  {/* <Link className="dropbtn" to='/login'>Login</Link> */}
-                  {/* <Link className="dropbtn" to="/register">Register</Link> */}
+                  <Link className="dropbtn" to='/login'>Login</Link>
+                  <Link className="dropbtn" to="/register">Register</Link>
                   <div className="dropdown">
                       <button onClick={this.showMenu} className="dropbtn"> Plants</button>
                       {this.state.showMenu? (

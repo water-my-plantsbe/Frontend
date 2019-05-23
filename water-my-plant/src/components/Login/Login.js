@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Form } from 'reactstrap';
-import { Route , Link,BrowserRouter as Router} from "react-router-dom";
+import { Route , BrowserRouter as Router} from "react-router-dom";
 import axios from 'axios';
 import Register from '../Register/Register.js';
 
@@ -21,7 +21,7 @@ class Login extends React.Component {
      try{
        const localurl = `http://localhost:5000/api/login`
       axios
-          .post('https://watermyplantsbe.herokuapp.com/api/login' || localurl, this.state)
+          .post('https://watermylovelyplants.herokuapp.com/api/login' || localurl, this.state)
           .then(res => {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.id);
@@ -60,7 +60,7 @@ class Login extends React.Component {
                   <p> Don't have an account ? </p>
                   {/* <Link to="/register ">  Register Here</Link>  */}
                       
-                <a href=" https://watermyplants.netlify.com/register">Register Here </a>
+                <a href=" https://watermyplant.netlify.com/register">Register Here </a>
             </Form>
             
           </UserBar>

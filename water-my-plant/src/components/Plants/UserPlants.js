@@ -13,7 +13,7 @@ class UserPlants extends React.Component {
     componentDidMount() {
         let id = localStorage.getItem(`id`)
         const localurl = `http://localhost:5000/api/plants/${id}/plants`
-        const url = `https://watermyplantsbe.herokuapp.com/api/plants/${id}/plants`
+        const url = `https://watermylovelyplants.herokuapp.com/api/plants/${id}/plants`
         try {
             axios
                 .get(url || localurl, { headers: { Authorization: localStorage.getItem("token") } })

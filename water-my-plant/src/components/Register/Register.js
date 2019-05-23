@@ -21,7 +21,7 @@ class Register extends React.Component {
      try{
        const localurl = `http://localhost:5000/api/register`
       axios
-          .post('https://watermyplantsbe.herokuapp.com/api/register' || localurl, this.state)
+          .post('https://watermylovelyplants.herokuapp.com/api/register' || localurl, this.state)
           .then(res => {
             console.log(res);
             console.log("You successfully Registered in");

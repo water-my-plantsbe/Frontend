@@ -16,7 +16,7 @@ class UserProfile extends React.Component {
     }
     componentDidMount() {
         let id = localStorage.getItem(`id`)
-        const url = `https://watermyplantsbe.herokuapp.com/api/users/${id}`
+        const url = `https://watermylovelyplants.herokuapp.com/api/users/${id}`
         this.setState({ id: id });
         try {
             axios
