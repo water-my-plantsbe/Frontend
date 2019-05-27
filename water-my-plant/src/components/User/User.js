@@ -16,12 +16,13 @@ class User extends React.Component {
     componentDidMount() {
         let id = localStorage.getItem(`id`)
         const url = `https://watermylovelyplants.herokuapp.com/api/users/${id}`
+        const localurl = `http://localhost:5000/api/users/${id}`
         this.setState({ id: id });
         try {
             axios
-                .get(url, { headers: { Authorization: localStorage.getItem("token") } })
+                .get(localurl || url, { headers: { Authorization: localStorage.getItem("token") } })
                 .then(res => {
-                    this.setState({ username: res.data.username, email: res.data.email, phone: res.data.phone})
+                    this.setState({ username: res.data.username, email: res.data.email, phone: res.data.phone, password: res.data.password})
                 })
         } catch (err) {
             console.log(err);
@@ -37,7 +38,7 @@ class User extends React.Component {
         data = { username: this.state.username, email: this.state.email, password: this.state.password, phone: this.state.phone  }
         id = localStorage.getItem(`id`)
         console.log(id)
-        const url = `https://watermyplantsbe.herokuapp.com/api/users/${id}` || `http://localhost:5000/api/users/${id}`
+        const url = `http://localhost:5000/api/users/${id}`|| `https://watermyplantsbe.herokuapp.com/api/users/${id}` 
         try {
             axios
                 .put(url, data, { headers: { Authorization: localStorage.getItem("token") }})
@@ -54,7 +55,7 @@ class User extends React.Component {
     }
     deleteMyAccount = id => {
         id = localStorage.getItem(`id`)
-        const url = `https://watermyplantsbe.herokuapp.com/api/users/${id}` || `http://localhost:5000/api/users/${id}`
+        const url = `http://localhost:5000/api/users/${id}` || `https://watermyplantsbe.herokuapp.com/api/users/${id}` 
         alert("Your Account Will be deleted permanantly")
         try {
             axios
@@ -78,6 +79,8 @@ class User extends React.Component {
                 <UserBar>
                   <div className ='loginform'>
                     <form onSubmit= {this.updateInfo}>
+                    <div className="border">
+                        <p>Name : </p>
                         <input
                             className='input'
                             onChange={this.handleInput}
@@ -85,6 +88,9 @@ class User extends React.Component {
                             value={this.state.username}
                             name="username"
                         />
+                    </div>
+                    <div className="border">
+                        <p>Password : </p>
                         <input
                             className='input'
                             type= 'password'
@@ -93,6 +99,9 @@ class User extends React.Component {
                             value={this.state.password}
                             name="password"
                         />
+                    </div>
+                    <div className="border">
+                        <p>Email : </p>
                         <input
                             className='input'
                             onChange={this.handleInput}
@@ -100,6 +109,9 @@ class User extends React.Component {
                             value={this.state.email}
                             name="email"
                         />
+                    </div>
+                    <div className="border">
+                    <p>Phone: </p>
                         <input
                             className='input'
                             onChange={this.handleInput}
@@ -107,6 +119,7 @@ class User extends React.Component {
                             value={this.state.phone}
                             name="phone"
                         />
+                    </div>
                     </form>
 
                     <div className="btn">
@@ -126,17 +139,37 @@ const Wrapper =styled.div`
       height: 100%;
 `
 const UserBar = styled.div`
+    position:fixed;
+    display: flex;
+    flex-wrap:wrap;
     box-shadow: 0px 2px 2px purple;
     text-align : center;
-    width: 400px;
+    width: 50%;
     border-radius: 5px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    margin: 50px auto;
+    margin: 10% 25%;
+    @media(max-width: 479px){
+        width: 90%;
+        margin: 10% 5%;
+    }
+    .loginform{
+        width: 100%;
+    }
+    .border{
+        display: flex;
+        flex-wrap:wrap;
+        min-width:50%;
+    }
+    p{
+        width: 30%;
+        margin-left: 5%;
+        @media(max-width: 479px){
+            width: 90%;
+        }
+    }
     .input{
-          margin: 5px;
+          margin: auto;
           height: 25px;
-          width : 300px;
+          min-width : 50%;
           border-radius: 5px;
           border: none;
           box-shadow: 0 2px 4px #272727;

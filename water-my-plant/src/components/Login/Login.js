@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Form } from 'reactstrap';
-import { Route , BrowserRouter as Router} from "react-router-dom";
+import { Link, withRouter, BrowserRouter as Router} from "react-router-dom";
 import axios from 'axios';
-import Register from '../Register/Register.js';
 
 class Login extends React.Component {
   constructor(props) {
@@ -20,12 +19,12 @@ class Login extends React.Component {
      e.preventDefault();
      try{
        const localurl = `http://localhost:5000/api/login`
+       const url = 'https://watermylovelyplants.herokuapp.com/api/login';
       axios
-          .post('https://watermylovelyplants.herokuapp.com/api/login' || localurl, this.state)
+          .post( localurl || url, this.state)
           .then(res => {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.id);
-            alert("You successfully Logged in");
             this.props.history.push('/myplants');
          })
     } catch(err) {
@@ -58,21 +57,17 @@ class Login extends React.Component {
 
               <Button className= "input" onClick={this.handlePassword}>Log in</Button>
                   <p> Don't have an account ? </p>
-                  {/* <Link to="/register ">  Register Here</Link>  */}
-                      
+                  <Link to="/register ">  Register Here</Link>     
                 <a href=" https://watermyplant.netlify.com/register">Register Here </a>
-            </Form>
-            
+            </Form>  
           </UserBar>
-       </FormWrapper>
-       
-       <Route  path="/register"  component={Register} />
+       </FormWrapper>       
     </Router>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);
 
 const FormWrapper =styled.div`
       width: 100%;

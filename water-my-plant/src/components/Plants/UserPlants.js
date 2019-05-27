@@ -16,10 +16,8 @@ class UserPlants extends React.Component {
         const url = `https://watermylovelyplants.herokuapp.com/api/plants/${id}/plants`
         try {
             axios
-                .get(url || localurl, { headers: { Authorization: localStorage.getItem("token") } })
-                .then(res => {
-                    this.setState({ plants: res.data })
-                })
+                .get(localurl || url , { headers: { Authorization: localStorage.getItem("token") } })
+                .then(res => {this.setState({ plants: res.data })})
         } catch (err) {
             console.log(err);
         }
@@ -27,28 +25,35 @@ class UserPlants extends React.Component {
     render() {
         return (
             <UserWrapper>
-              <PlantsWrapper>     
+                <h1>My Plants</h1> 
+              <PlantsWrapper>       
                 <>
                    {this.state.plants.map(plants=>
                     <PlantBar key = {plants.id}> 
-                            <h2 > {plants.name} </h2> 
-                            <h4 > {plants.description} </h4>     
+                            <h2 > {plants.name}        </h2> 
+                            <h4 > {plants.description} </h4>  
+                            <h4 > {plants.last_water}  </h4>   
                     </PlantBar >
                    )}
                 </>
-  
                </PlantsWrapper>
             </UserWrapper>
         );
     }
-}
-        
+}      
 export default withRouter(UserPlants);
 
 const UserWrapper = styled.div`
       width: 100%;
       height: 100%;
-      margin-top: 60px;
+      margin-top: 60px;      
+      h1{ 
+        Text-align: center;
+        margin: auto;
+        width: 30%;
+        box-shadow: 0 2px  2px 2px grey;
+        margin-bottom : 10px;
+    }
 `
 const PlantsWrapper= styled.div`
      display: flex;

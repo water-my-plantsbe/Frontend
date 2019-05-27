@@ -22,17 +22,14 @@ class Plants extends React.Component {
      try{
        const localurl = `http://localhost:5000/api/plants/${id}/plant`
       axios
-          .post(`https://watermylovelyplants.herokuapp.com/api/plants/${id}/plant` || localurl, this.state, { headers: { Authorization: localStorage.getItem("token") }})
+          .post(localurl || `https://watermylovelyplants.herokuapp.com/api/plants/${id}/plant` , this.state, { headers: { Authorization: localStorage.getItem("token") }})
           .then(res => {
-            localStorage.setItem("plantid", res.data.id);
-            alert("You successfully Added your Plant");
             this.props.history.push('/myplants');
          })
     } catch(err) {
       console.log({Error: err})
     }
   }
-
   render(){
     return(
         <FormWrapper>

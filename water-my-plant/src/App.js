@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
 import Register from './components/Register/Register'
 import Login from './components/Login/Login';
 import UpdateUser from './components/User/User.js';
 import UserProfile from './components/User/UserProfile.js';
 import AddPlants from './components/Plants/Plants.js';
 import UserPlants from './components/Plants/UserPlants';
+import Plantsbook from './components/Plants/PlantBooks.js'
+
 import styled from "styled-components";
-import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
+import './App.css';
+import {Route,Switch, Link,BrowserRouter as Router} from 'react-router-dom';
+
 class App extends Component {
   constructor() {
     super();
@@ -32,7 +35,7 @@ class App extends Component {
     if (localStorage.getItem('token')) {
       localStorage.removeItem('token');
       alert("You successfully Signed Out")
-      this.props.history.push("/");
+      this.props.history.push("/login");
       window.location.reload(true);
     } else{
       alert("Please Log in First")
@@ -70,13 +73,15 @@ class App extends Component {
               </div>
             </nav>
           </NavDiv>
-        <Route exact path="/login"     component={Login} />
-        <Route exact path="/register"  component={Register} />
-        <Route path="/updateuser" component={UpdateUser} />
-        <Route path="/myprofile" component={UserProfile} />
-        <Route path="/addplants" component={AddPlants} />
-        <Route path="/myplants" component={UserPlants} />
-
+      <Switch> 
+        <Route path="/login"           component={Login} />
+        <Route path="/register"        component={Register} />
+        <Route path="/updateuser"      component={UpdateUser} />
+        <Route path="/myprofile"       component={UserProfile} />
+        <Route path="/addplants"       component={AddPlants} />
+        <Route path="/myplants"        component={UserPlants} />
+        <Route path="/plantsbook"      component={Plantsbook} />
+      </Switch>
       </Router>
     );
   }
