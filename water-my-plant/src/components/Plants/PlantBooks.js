@@ -11,9 +11,9 @@ class PlantBook extends React.Component {
   }
   componentDidMount(e) {
      try{
-       const localurl = `http://localhost:5000/api/plants`
+      //  const localurl = `http://localhost:5000/api/plants`
       axios
-          .get( localurl || `https://watermylovelyplants.herokuapp.com/api/plants` )
+          .get( `https://watermylovelyplants.herokuapp.com/api/plants` )
           .then(res => {
             this.setState({plants : res.data})
          })

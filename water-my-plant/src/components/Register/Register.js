@@ -25,9 +25,9 @@ class Register extends React.Component {
   handlePassword = e => {
      e.preventDefault();
      try{
-       const localurl = `http://localhost:5000/api/register`
+      //  const localurl = `http://localhost:5000/api/register`
       axios
-          .post(localurl || 'https://watermylovelyplants.herokuapp.com/api/register' , this.state)
+          .post('https://watermylovelyplants.herokuapp.com/api/register' , this.state)
           .then(res => {
             console.log(res);
             console.log("You successfully Registered in");

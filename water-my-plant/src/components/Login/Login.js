@@ -25,10 +25,10 @@ class Login extends React.Component {
   handlePassword = e => {
      e.preventDefault();
      try{
-       const localurl = `http://localhost:5000/api/login`
+      //  const localurl = `http://localhost:5000/api/login`
        const url = 'https://watermylovelyplants.herokuapp.com/api/login';
       axios
-          .post( localurl || url, this.state)
+          .post(url, this.state)
           .then(res => {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.id);

@@ -16,11 +16,11 @@ class User extends React.Component {
     componentDidMount() {
         let id = localStorage.getItem(`id`)
         const url = `https://watermylovelyplants.herokuapp.com/api/users/${id}`
-        const localurl = `http://localhost:5000/api/users/${id}`
+        // const localurl = `http://localhost:5000/api/users/${id}`
         this.setState({ id: id });
         try {
             axios
-                .get(localurl || url, { headers: { Authorization: localStorage.getItem("token") } })
+                .get(url, { headers: { Authorization: localStorage.getItem("token") } })
                 .then(res => {
                     this.setState({ username: res.data.username, email: res.data.email, phone: res.data.phone, password: res.data.password})
                 })
@@ -38,7 +38,7 @@ class User extends React.Component {
         data = { username: this.state.username, email: this.state.email, password: this.state.password, phone: this.state.phone  }
         id = localStorage.getItem(`id`)
         console.log(id)
-        const url = `http://localhost:5000/api/users/${id}`|| `https://watermyplantsbe.herokuapp.com/api/users/${id}` 
+        const url = `https://watermylovelyplants.herokuapp.com/api/users/${id}` 
         try {
             axios
                 .put(url, data, { headers: { Authorization: localStorage.getItem("token") }})
@@ -55,7 +55,8 @@ class User extends React.Component {
     }
     deleteMyAccount = id => {
         id = localStorage.getItem(`id`)
-        const url = `http://localhost:5000/api/users/${id}` || `https://watermyplantsbe.herokuapp.com/api/users/${id}` 
+        // const localurl = `http://localhost:5000/api/users/${id}`
+        const url =  `https://watermyplantsbe.herokuapp.com/api/users/${id}` 
         prompt("Your Account Will be deleted permanantly, Press Y for confirm else cancel")
         if(prompt === "Y" || "y"){
             try {
