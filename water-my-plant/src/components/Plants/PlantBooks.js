@@ -13,7 +13,7 @@ class PlantBook extends React.Component {
      try{
        const localurl = `http://localhost:5000/api/plants`
       axios
-          .get( localurl || `https://watermylovelyplants.herokuapp.com/api/plants` , { headers: { Authorization: localStorage.getItem("token") }})
+          .get( localurl || `https://watermylovelyplants.herokuapp.com/api/plants` )
           .then(res => {
             this.setState({plants : res.data})
          })
@@ -29,7 +29,7 @@ class PlantBook extends React.Component {
                 <>
                    {this.state.plants.map(plants=>      
                     <PlantBar key = {plants.id} > 
-                            <li> {plants.name} </li>  
+                            <li> {plants.plant_name} </li>  
                     </PlantBar >
                    )}
                 </>
