@@ -49,13 +49,15 @@ class App extends Component {
              <div>
                   <Link className="dropbtn" to='/login'>Login</Link>
                   <Link className="dropbtn" to="/register">Register</Link>
+                  <Link className="dropbtn" to='/plantsbook'> Plants Book</Link>
                   <div className="dropdown">
-                      <button onClick={this.showMenu} className="dropbtn"> Plants</button>
+                      <button onClick={this.showMenu} className="dropbtn">My Plants</button>
+                      
                       {this.state.showMenu? (
                             <div className="menu dropdown-content" ref={(element)=>{this.dropdownMenu = element;}}>
-                              <Link to='/addplants'> Add Plants</Link>
-                              <Link to='/myplants'> My All Plants</Link>
-                              <Link to='/plantsbook'> Plants Book</Link>
+                              <Link to='/addplants'> Add Plant</Link>
+                              <Link to='/myplants'> All My Plants</Link>
+                              {/* <Link to='/plantsbook'> Plants Book</Link> */}
                             </div> 
                       ) : (null) }
                   </div>
@@ -147,6 +149,7 @@ const NavDiv = styled.div`
       padding: 12px 16px;
       text-decoration: none;
       display: block;
+      border-radius: 5px;
     }
 
     .dropdown-content a:hover {
@@ -155,6 +158,7 @@ const NavDiv = styled.div`
 
     .dropdown:hover .dropdown-content {
       display: block;
+      border-radius: 5px;
     }
 
 
@@ -166,13 +170,15 @@ const NavDiv = styled.div`
   .dropdown-content .signoutBtn{
     border-radius: 5px;
     height: 25px;
+    
 }
   .update{
     padding: 12px 16px;
   }
   .signoutBtn{
     border-radius: 20px solid red;
-    padding: 12px 16px;
+    padding: 5px 5px;
+    margin: 3px auto;
 }
 `
 const Button = styled.div`
@@ -180,8 +186,12 @@ const Button = styled.div`
   cursor: pointer;
   text-align: center;
   color: #EFF1F3;
+  background: green;
+  margin:0 auto;
+  width: 80px;
+  padding:0;
   :hover{
-    background-color: purple;
+    background-color: red;
 
   }
 
