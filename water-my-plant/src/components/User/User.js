@@ -56,20 +56,22 @@ class User extends React.Component {
     deleteMyAccount = id => {
         id = localStorage.getItem(`id`)
         const url = `http://localhost:5000/api/users/${id}` || `https://watermyplantsbe.herokuapp.com/api/users/${id}` 
-        alert("Your Account Will be deleted permanantly")
-        try {
-            axios
-                .delete(url)
-                .then(res => {
-                  console.log(res);
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    alert("Your Account deleted Successfully")
-                    this.props.history.push('/');
-                    window.location.reload(true);
-                })
-        } catch (err) {
-            console.log(err);
+        prompt("Your Account Will be deleted permanantly, Press Y for confirm else cancel")
+        if(prompt === "Y" || "y"){
+            try {
+                axios
+                    .delete(url, { headers: { Authorization: localStorage.getItem("token")}})
+                    .then(res => {
+                    console.log(res);
+                        localStorage.clear();
+                        sessionStorage.clear();
+                        alert("Your Account deleted Successfully")
+                        this.props.history.push('/login');
+                        window.location.reload(true);
+                    })
+            } catch (err) {
+                console.log(err);
+            }
         }
     }
 
