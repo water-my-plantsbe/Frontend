@@ -12,11 +12,11 @@ class UserPlants extends React.Component {
     }
     componentDidMount() {
         let id = localStorage.getItem(`id`)
-        const localurl = `http://localhost:5000/api/plants/${id}/plants`
+        // const localurl = `http://localhost:5000/api/plants/${id}/plants`
         const url = `https://watermylovelyplants.herokuapp.com/api/plants/${id}/plants`
         try {
             axios
-                .get(localurl || url , { headers: { Authorization: localStorage.getItem("token") } })
+                .get(url , { headers: { Authorization: localStorage.getItem("token") } })
                 .then(res => {this.setState({ plants: res.data })})
         } catch (err) {
             console.log(err);
