@@ -12,6 +12,13 @@ class Login extends React.Component {
           password: '',
       };
   }
+  componentDidMount() {
+    if(localStorage.getItem("token")){
+      alert("You are Already Logged In")
+      this.props.history.push('/plantsbook')
+    }
+  }
+  
   handleInput = event => {
     this.setState({ [event.target.name]: event.target.value })
   };
