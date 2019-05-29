@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Form } from 'reactstrap';
-import { Link, withRouter, BrowserRouter as Router} from "react-router-dom";
+import { withRouter, BrowserRouter as Router} from "react-router-dom";
 import axios from 'axios';
 
 class Login extends React.Component {
@@ -57,7 +57,7 @@ class Login extends React.Component {
 
               <Button className= "input" onClick={this.handlePassword}>Log in</Button>
                   <p> Don't have an account ? </p>
-                  <Link to="/register ">  Register Here</Link>     
+                  {/* <Link to="/register ">  Register Here</Link>      */}
                 <a href=" https://watermyplant.netlify.com/register">Register Here </a>
             </Form>  
           </UserBar>
