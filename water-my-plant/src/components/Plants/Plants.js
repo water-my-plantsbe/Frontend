@@ -20,9 +20,9 @@ class Plants extends React.Component {
      e.preventDefault();
      const id = localStorage.getItem(`id`)
      try{
-       const localurl = `http://localhost:5000/api/plants/${id}/plant`
+      //  const localurl = `http://localhost:5000/api/plants/${id}/plant`
       axios
-          .post(localurl || `https://watermylovelyplants.herokuapp.com/api/plants/${id}/plant` , this.state, { headers: { Authorization: localStorage.getItem("token") }})
+          .post(`https://watermylovelyplants.herokuapp.com/api/plants/${id}/plant` , this.state, { headers: { Authorization: localStorage.getItem("token") }})
           .then(res => {
             this.props.history.push('/myplants');
          })
