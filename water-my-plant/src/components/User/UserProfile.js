@@ -17,11 +17,11 @@ class UserProfile extends React.Component {
     componentDidMount() {
         let id = localStorage.getItem(`id`)
         const url = `https://watermylovelyplants.herokuapp.com/api/users/${id}`
-        const localurl = `http://localhost:5000/api/users/${id}`
+        // const localurl = `http://localhost:5000/api/users/${id}`
         this.setState({ id: id });
         try {
             axios
-                .get(localurl || url, { headers: { Authorization: localStorage.getItem("token") } })
+                .get(url, { headers: { Authorization: localStorage.getItem("token") } })
                 .then(res => {
                     this.setState({ username: res.data.username, email: res.data.email, phone: res.data.phone})
                 })
