@@ -13,6 +13,12 @@ class Register extends React.Component {
           phone: ''
       };
   }
+  componentDidMount() {
+    if(localStorage.getItem("token")){
+      alert("You are Already Logged In, Please sign out to re-register")
+      this.props.history.push('/plantsbook')
+    }
+  }
   handleInput = event => {
     this.setState({ [event.target.name]: event.target.value })
   };
